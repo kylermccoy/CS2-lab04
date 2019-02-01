@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 /**
  * A handy-dandy abstraction and implementation for dollars and cents.
+ * <em>Note that Currency objects are immutable. Therefore to
+ * &quot;update&quot; them you need to assign them:</em><br>
+ * <pre>curr = curr.op(...)</pre>
  *
  * @author James Heliotis
  */
