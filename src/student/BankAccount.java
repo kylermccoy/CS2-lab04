@@ -16,7 +16,7 @@ import edu.rit.cs.Currency;
  * abstract; subclasses must implement this method for
  * the specific account type.
  *
- * @author YOUR NAME HERE
+ * @author Kyle McCoy   krm7269@rit.edu
  */
 
 public abstract class BankAccount {
@@ -34,7 +34,9 @@ public abstract class BankAccount {
     public final AccountType type;
 
     // DECLARE YOUR PRIVATE VARIABLES HERE.
-
+    private Currency currentBalance ;
+    private Currency interestAccrued ;
+    private String ownerName ;
     // USING THE JAVADOC, FILL IN THE ACTUAL CODE.
     /**
      * A constructor for a BankAccount object. It accepts the amount
@@ -49,6 +51,8 @@ public abstract class BankAccount {
             Currency newMoney, String ownerName, AccountType type ) {
         this.type = type;
         // TODO
+        this.ownerName = ownerName ;
+        this.currentBalance = newMoney ;
     }
 
     /**
@@ -56,7 +60,7 @@ public abstract class BankAccount {
      * @return this account's owner's name
      */
     public String getOwnerName() {
-        return null; // TODO
+        return this.ownerName ;
     }
 
     /**
@@ -119,7 +123,7 @@ public abstract class BankAccount {
      * @return the current balance
      */
     public Currency getCurrentBalance() {
-        return null; // TODO
+        return this.currentBalance ;
     }
 
 
@@ -149,7 +153,7 @@ public abstract class BankAccount {
      */
     @Override
     public String toString() {
-        return /* TODO ownerName + */ " " + getCurrentBalance();
+        return this.ownerName + " " + getCurrentBalance();
     }
 
 } // BankAccount
