@@ -14,10 +14,12 @@ public class CreditCard extends BankAccount {
     }
 
     public Currency getCurrentBalance() {
-        return this.creditLimit ;
+        return super.getCurrentBalance().subtract(this.creditLimit) ;
     }
     public void endOfMonth() {
-
+        Currency intEarned = getCurrentBalance().multiply(monthlyInterestRate) ;
+        setInterestAccrued( intEarned ) ;
+        addInterest( intEarned ) ;
     }
     public String getAccountType() {
         return "CC" ;

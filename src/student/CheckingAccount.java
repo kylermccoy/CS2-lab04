@@ -21,7 +21,13 @@ public class CheckingAccount extends BankAccount {
     }
 
     public void endOfMonth() {
-
+        if (bonus && this.getCurrentBalance().compareTo(PREMIUM_CHECKING_MINIMUM_BALANCE) > 0) {
+            Currency intEarned = getCurrentBalance().multiply(BONUS_MONTHLY_RATE) ;
+            setInterestAccrued( intEarned ) ;
+            addInterest( intEarned ) ;
+        }else{
+            setInterestAccrued(Currency.ZERO) ;
+        }
     }
     public String getAccountType() {
         return this.chkAcctType ;

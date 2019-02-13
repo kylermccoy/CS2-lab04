@@ -53,6 +53,7 @@ public abstract class BankAccount {
         // TODO
         this.ownerName = ownerName ;
         this.currentBalance = newMoney ;
+        this.interestAccrued = Currency.ZERO ;
     }
 
     /**
@@ -76,7 +77,7 @@ public abstract class BankAccount {
      * @param addition the amount of money to be added
      */
     public void credit( Currency addition ) {
-        // TODO
+        this.currentBalance = this.currentBalance.add(addition) ;
     }
 
     /**
@@ -88,7 +89,13 @@ public abstract class BankAccount {
      *             changed in that case.)
      */
     public void debit( Currency deduction ) {
-        // TODO
+        Currency amount = this.currentBalance ;
+        Currency deducted = amount.subtract(deduction) ;
+        if (deducted.negative()) {
+            throw new InsufficientFunds() ;
+        }else{
+            this.currentBalance = deducted ;
+        }
     }
 
     /**
@@ -105,7 +112,7 @@ public abstract class BankAccount {
      * @param interest the calculated interest amount
      */
     protected void setInterestAccrued( Currency interest ) {
-        // TODO
+        this.interestAccrued = interest ;
     }
 
     /**
@@ -113,7 +120,7 @@ public abstract class BankAccount {
      * @see java.io.PrintStream#printf(String, Object...)
      */
     public void printStatement() {
-        // TODO
+        System.out.printf("%-4s%-16sInterest Accrued: %s Current Balance: %s\n", getAccountType(), getOwnerName(), getInterest().toString(), getCurrentBalance().toString()) ;
     }
 
 
@@ -133,7 +140,7 @@ public abstract class BankAccount {
      * @return the current interest Accrued
      */
     public Currency getInterest() {
-        return null; // TODO
+        return this.interestAccrued ;
     }
 
     /**
@@ -142,7 +149,7 @@ public abstract class BankAccount {
      * @param newInterestAccrued the total amount of interest Accrued.
      */
     protected void addInterest( Currency newInterestAccrued ) {
-        // TODO
+        this.currentBalance = this.currentBalance.add(newInterestAccrued) ;
     }
 
     /**
